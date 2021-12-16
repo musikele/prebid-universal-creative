@@ -288,8 +288,8 @@ export function newNativeAssetManager(win, pubUrl) {
 
       if ((data.hasOwnProperty('rendererUrl') && data.rendererUrl) || (flag && win.pbNativeData.hasOwnProperty('rendererUrl'))) {
         let renderPayload = data.assets;
-        if (data.ortb2) {
-          renderPayload = data.ortb2;
+        if (data.ortb) {
+          renderPayload = data.ortb;
         }
         if (win.renderAd) {
           const newHtml = (win.renderAd && win.renderAd(renderPayload)) || '';
