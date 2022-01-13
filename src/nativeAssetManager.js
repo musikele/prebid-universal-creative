@@ -383,12 +383,14 @@ export function newNativeAssetManager(win, pubUrl) {
     let html = document;
     if (data.ortb) {
       return replaceORTBAssetsAndLinks(html, data.ortb);
+    } else if (!Array.isArray(data.assets)) {
+      return html;
     }
 
-    let assets = data.assets || [];
+    let assets = data.assets;
     let adId = data.adId;
 
-    (assets || []).forEach(asset => {
+    assets.forEach(asset => {
       const flag = (typeof win.pbNativeData !== 'undefined');
       const searchString = (adId && !flag) ? `${NATIVE_KEYS[asset.key]}:${adId}` : ((flag) ? '##'+`${NATIVE_KEYS[asset.key]}`+'##' : `${NATIVE_KEYS[asset.key]}`);
       const searchStringRegex = new RegExp(searchString, 'g');
